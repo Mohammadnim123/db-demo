@@ -12,34 +12,17 @@ const pg = require('pg');
 const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 8000;
-// const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client(process.env.DATABASE_URL);
 
-const client = new pg.Client({ connectionString: process.env.DATABASE_URL,   ssl: { rejectUnauthorized: false } });
-// let client;
-// let DATABASE_URL = process.env.DATABASE_URL;
-// let ENV =  process.env.ENV||'';
-// if (ENV === 'DEV') {
-//   client = new pg.Client({
-//     connectionString: DATABASE_URL
-//   });
-// } else {
-//   client = new pg.Client({
-//     connectionString: DATABASE_URL,
-//     ssl: {rejectUnauthorized: false }
-//   });
-// }
+// const client = new pg.Client({ connectionString: process.env.DATABASE_URL,   ssl: { rejectUnauthorized: false } });
+
 
 // ROUTES
 //Error Handler
 
 
 
-function dbget(req,res){
-    let sql = `SELECT * FROM people;`
-    client.query(sql).then(data =>{
-      res.send(data.rows)
-    })
-  }
+
 // Routes Handlerseeeee
 //localhost:3000/add?first=Razan&last=Quran
 function addDataHandler(req,res) {
@@ -79,7 +62,7 @@ function notFoundHandler(request, response) {
 app.get('/test', testHandler);
 app.get('/add',addDataHandler);
 app.get('/people',getDataHandler);
-app.get('/get', dbget);
+
 app.get('*', notFoundHandler); 
 
 client.connect()
