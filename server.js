@@ -17,15 +17,36 @@ const PORT = process.env.PORT || 8000;
 //     connectionString: process.env.DATABASE_URL,
 //     sslmode: process.env.NODE_ENV === "production" ? "require" : "disable"
 //   })
-const client = new pg.Client({ connectionString: process.env.DATABASE_URL,   ssl: { rejectUnauthorized: false } });
-// client.connect();
+// const client = new pg.Client({ connectionString: process.env.DATABASE_URL,   ssl: { rejectUnauthorized: false } });
+let client;
+let DATABASE_URL = process.env.DATABASE_URL;
+let ENV =  process.env.ENV||'';
+if (ENV === 'DEV') {
+  client = new pg.Client({
+    connectionString: DATABASE_URL
+  });
+} else {
+  client = new pg.Client({
+    connectionString: DATABASE_URL,
+    ssl: {}
+  });
+}
 
 // ROUTES
 app.get('/test', testHandler);
 app.get('/add',addDataHandler);
 app.get('/people',getDataHandler);
+app.get('/get', dbget);
 app.get('*', notFoundHandler); //Error Handler
 
+
+
+function dbget(req,res){
+    let sql = `SELECT * FROM people;`
+    client.query(sql).then(data =>{
+      res.send(data.rows)
+    })
+  }
 // Routes Handlerseeeee
 //localhost:3000/add?first=Razan&last=Quran
 function addDataHandler(req,res) {
