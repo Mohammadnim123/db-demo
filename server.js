@@ -1,16 +1,16 @@
 'use strict';
 
+require('dotenv').config();
 //Application dependencies
 const express = require('express');
 // Load Environment Variables from the .env file
-require('dotenv').config();
-const cors = require('cors');
+// const cors = require('cors');
 const pg = require('pg');
 
 
 //Application setup
 const app = express();
-app.use(cors());
+// app.use(cors());
 const PORT = process.env.PORT || 8000;
 const client = new pg.Client(process.env.DATABASE_URL);
 
