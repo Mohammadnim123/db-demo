@@ -30,11 +30,7 @@ const client = new pg.Client({ connectionString: process.env.DATABASE_URL,   ssl
 // }
 
 // ROUTES
-app.get('/test', testHandler);
-app.get('/add',addDataHandler);
-app.get('/people',getDataHandler);
-app.get('/get', dbget);
-app.get('*', notFoundHandler); //Error Handler
+//Error Handler
 
 
 
@@ -79,6 +75,12 @@ function testHandler(request, response) {
 function notFoundHandler(request, response) {
     response.status(404).send('huh????');
 }
+
+app.get('/test', testHandler);
+app.get('/add',addDataHandler);
+app.get('/people',getDataHandler);
+app.get('/get', dbget);
+app.get('*', notFoundHandler); 
 
 client.connect()
     .then(() => {
