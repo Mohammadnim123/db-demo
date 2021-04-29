@@ -12,9 +12,9 @@ const pg = require('pg');
 const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 8000;
-const client = new pg.Client(process.env.DATABASE_URL);
+// const client = new pg.Client(process.env.DATABASE_URL);
 
-// const client = new pg.Client({ connectionString: process.env.DATABASE_URL,   ssl: { rejectUnauthorized: false } });
+const client = new pg.Client({ connectionString: process.env.DATABASE_URL,   ssl: { rejectUnauthorized: false } });
 // let client;
 // let DATABASE_URL = process.env.DATABASE_URL;
 // let ENV =  process.env.ENV||'';
