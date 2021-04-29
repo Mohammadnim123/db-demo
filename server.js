@@ -80,7 +80,7 @@ app.get('/test', testHandler);
 app.get('/add',addDataHandler);
 app.get('/people',getDataHandler);
 app.get('/get', dbget);
-app.get('/*', notFoundHandler); 
+app.get('*', notFoundHandler); 
 
 client.connect()
     .then(() => {
