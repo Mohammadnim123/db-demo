@@ -19,7 +19,11 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 // ROUTES
 //Error Handler
+app.get('/test', testHandler);
+app.get('/add',addDataHandler);
+app.get('/people',getDataHandler);
 
+app.get('*', notFoundHandler); 
 
 
 
@@ -59,11 +63,7 @@ function notFoundHandler(request, response) {
     response.status(404).send('huh????');
 }
 
-app.get('/test', testHandler);
-app.get('/add',addDataHandler);
-app.get('/people',getDataHandler);
 
-app.get('*', notFoundHandler); 
 
 client.connect()
     .then(() => {
