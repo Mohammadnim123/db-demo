@@ -28,7 +28,7 @@ if (ENV === 'DEV') {
 } else {
   client = new pg.Client({
     connectionString: DATABASE_URL,
-    ssl: {}
+    ssl: {rejectUnauthorized: false }
   });
 }
 
