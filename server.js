@@ -27,7 +27,7 @@ app.get('*', notFoundHandler);
 
 
 
-// Routes Handlerseeeee
+// Routes Handlerseeeeeeeeee
 //localhost:3000/add?first=Razan&last=Quran
 function addDataHandler(req,res) {
     console.log(req.query);
